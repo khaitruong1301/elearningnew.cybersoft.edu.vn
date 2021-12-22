@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
-
+using static elearningAPI.common.Common;
 namespace elearningAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -107,7 +107,7 @@ namespace elearningAPI.Controllers
                 return response;
 
             }
-            IEnumerable<ChiTietKhoaHocVM> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc,HinhAnh=n.MaKhoaHocNavigation.HinhAnh,LuotXem=n.MaKhoaHocNavigation.LuotXem,BiDanh=n.MaKhoaHocNavigation.BiDanh,NgayTao=n.MaKhoaHocNavigation.NgayTao,DanhGia=n.MaKhoaHocNavigation.DanhGia,MoTa=n.MaKhoaHocNavigation.MoTa });
+            IEnumerable<ChiTietKhoaHocVM> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc,HinhAnh=DomainImage +  n.MaKhoaHocNavigation.HinhAnh,LuotXem=n.MaKhoaHocNavigation.LuotXem,BiDanh=n.MaKhoaHocNavigation.BiDanh,NgayTao=n.MaKhoaHocNavigation.NgayTao,DanhGia=n.MaKhoaHocNavigation.DanhGia,MoTa=n.MaKhoaHocNavigation.MoTa });
 
             ThongTinTaiKhoan ttTK = Mapper.Map<NguoiDung, ThongTinTaiKhoan>(tt);
             if (lstKhoaHocGhiDanh.Count() > 0)
@@ -246,7 +246,7 @@ namespace elearningAPI.Controllers
                 return response;
 
             }
-            IEnumerable<ChiTietKhoaHocVM> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc, HinhAnh = n.MaKhoaHocNavigation.HinhAnh, LuotXem = n.MaKhoaHocNavigation.LuotXem, BiDanh = n.MaKhoaHocNavigation.BiDanh, NgayTao = n.MaKhoaHocNavigation.NgayTao, DanhGia = n.MaKhoaHocNavigation.DanhGia, MoTa = n.MaKhoaHocNavigation.MoTa });
+            IEnumerable<ChiTietKhoaHocVM> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc, HinhAnh = DomainImage + n.MaKhoaHocNavigation.HinhAnh, LuotXem = n.MaKhoaHocNavigation.LuotXem, BiDanh = n.MaKhoaHocNavigation.BiDanh, NgayTao = n.MaKhoaHocNavigation.NgayTao, DanhGia = n.MaKhoaHocNavigation.DanhGia, MoTa = n.MaKhoaHocNavigation.MoTa });
 
             ThongTinTaiKhoan ttTK = Mapper.Map<NguoiDung, ThongTinTaiKhoan>(tt);
             if (lstKhoaHocGhiDanh.Count() > 0)
