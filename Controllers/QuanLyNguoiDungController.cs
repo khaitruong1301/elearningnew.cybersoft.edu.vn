@@ -107,7 +107,7 @@ namespace elearningAPI.Controllers
                 return response;
 
             }
-            IEnumerable<ChiTietKhoaHoc> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHoc { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc });
+            IEnumerable<ChiTietKhoaHocVM> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc,HinhAnh=n.MaKhoaHocNavigation.HinhAnh,LuotXem=n.MaKhoaHocNavigation.LuotXem,BiDanh=n.MaKhoaHocNavigation.BiDanh,NgayTao=n.MaKhoaHocNavigation.NgayTao,DanhGia=n.MaKhoaHocNavigation.DanhGia,MoTa=n.MaKhoaHocNavigation.MoTa });
 
             ThongTinTaiKhoan ttTK = Mapper.Map<NguoiDung, ThongTinTaiKhoan>(tt);
             if (lstKhoaHocGhiDanh.Count() > 0)
@@ -223,24 +223,37 @@ namespace elearningAPI.Controllers
         }
         [Authorize]
         [HttpPost("ThongTinTaiKhoan")]
-        public async Task<ActionResult> ThongTinTaiKhoan(ThongTinDangNhap tttk)
+        public async Task<ActionResult> ThongTinTaiKhoan()
         {
 
-            NguoiDung tt = db.NguoiDung.SingleOrDefault(n => n.TaiKhoan == tttk.TaiKhoan);
+            //NguoiDung tt = db.NguoiDung.SingleOrDefault(n => n.TaiKhoan == tttk.TaiKhoan);
+            //if (tt == null)
+            //{
+            //    // I wish to return an error response how can i do that?
+            //    var response = await tbl.TBLoi(ThongBaoLoi.Loi400, "Tài khoản không hợp lệ!");
+            //    return response;
+
+            //}
+            var accessToken = Request.Headers[HeaderNames.Authorization];
+
+            string taiKhoan = parseJWTToTaiKhoan(accessToken);
+
+            NguoiDung tt = db.NguoiDung.SingleOrDefault(n => n.TaiKhoan == taiKhoan);
             if (tt == null)
             {
                 // I wish to return an error response how can i do that?
-                var response = await tbl.TBLoi(ThongBaoLoi.Loi400, "Tài khoản không hợp lệ!");
+                var response = await tbl.TBLoi(ThongBaoLoi.Loi400, "Kiểm tra lại token!");
                 return response;
 
             }
-            IEnumerable<ChiTietKhoaHoc> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == tttk.TaiKhoan).Select(n => new ChiTietKhoaHoc { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc });
+            IEnumerable<ChiTietKhoaHocVM> lstKhoaHocGhiDanh = db.HocVienKhoaHoc.Where(n => n.TaiKhoan == taiKhoan).Select(n => new ChiTietKhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.MaKhoaHocNavigation.TenKhoaHoc, HinhAnh = n.MaKhoaHocNavigation.HinhAnh, LuotXem = n.MaKhoaHocNavigation.LuotXem, BiDanh = n.MaKhoaHocNavigation.BiDanh, NgayTao = n.MaKhoaHocNavigation.NgayTao, DanhGia = n.MaKhoaHocNavigation.DanhGia, MoTa = n.MaKhoaHocNavigation.MoTa });
 
             ThongTinTaiKhoan ttTK = Mapper.Map<NguoiDung, ThongTinTaiKhoan>(tt);
             if (lstKhoaHocGhiDanh.Count() > 0)
             {
                 ttTK.ChiTietKhoaHocGhiDanh = lstKhoaHocGhiDanh.ToList();
             }
+
 
             return Ok(ttTK);
         }

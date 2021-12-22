@@ -13234,11 +13234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\elearning0706.cybersoft.edu.vn\\elearningAPI\\elearningAPI\\elearningAPI.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
       "projectName": "elearningAPI",
-      "projectPath": "C:\\Users\\HP\\Desktop\\elearning0706.cybersoft.edu.vn\\elearningAPI\\elearningAPI\\elearningAPI.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\elearning0706.cybersoft.edu.vn\\elearningAPI\\elearningAPI\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\elearningnew.cybersoft.edu.vn\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
