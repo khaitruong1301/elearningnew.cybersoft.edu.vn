@@ -8,7 +8,7 @@ namespace elearningAPI.common
 
     public class Common
     {
-        public static readonly string DomainImage = "https://elearning0706.cybersoft.edu.vn/hinhanh/";
+        public static readonly string DomainImage = "https://elearningnew.cybersoft.edu.vn/hinhanh/";
 
         public class DateTimes
         {

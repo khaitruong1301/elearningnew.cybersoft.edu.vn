@@ -6,7 +6,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\HP\Desktop\elearningnew.cybersoft.edu.vn\bin\Release\netcoreapp2.1\publish\</_PublishTargetUrl>
-    <History>True|2021-12-22T16:51:23.1942262Z;True|2021-12-22T23:20:48.1860027+07:00;True|2021-12-22T22:49:30.9530863+07:00;True|2021-08-16T12:54:45.4101803+07:00;True|2021-08-16T12:52:21.1072924+07:00;</History>
+    <_PublishTargetUrl>C:\Users\khaitruong\Desktop\elearningnew.cybersoft.edu.vn\bin\Release\netcoreapp2.1\publish\</_PublishTargetUrl>
+    <History>True|2022-10-05T08:29:50.2343304Z;True|2021-12-22T23:51:23.1942262+07:00;True|2021-12-22T23:20:48.1860027+07:00;True|2021-12-22T22:49:30.9530863+07:00;True|2021-08-16T12:54:45.4101803+07:00;True|2021-08-16T12:52:21.1072924+07:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
 </Project>
