@@ -17,7 +17,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using System.Reflection;
 using bookingticketAPI.Filter;
-
+using Microsoft.Extensions.FileProviders;
+using static System.Net.WebRequestMethods;
 
 namespace elearningAPI.Controllers
 {
@@ -38,7 +39,7 @@ namespace elearningAPI.Controllers
             var lstModel = db.KhoaHoc.Where(n => n.BiDanh.Contains(tenKhoaHoc) && n.MaNhom == MaNhom);
             if (lstModel.Count() == 0)
             {
-                var response = await tbl.TBLoi(ThongBaoLoi.Loi500, "Không tìm thấy khóa học!");
+                var response = await tbl.TBLoi(ThongBaoLoi.Loi404, "Không tìm thấy khóa học!");
                 return response;
             }
             return Ok(lstModel.Select(n => new KhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.TenKhoaHoc, BiDanh = n.BiDanh, MaNhom = n.MaNhom, DanhMucKhoaHoc = new DanhMucKHVM { MaDanhMucKhoahoc = n.MaDanhMucKhoaHoc, TenDanhMucKhoaHoc = n.MaDanhMucKhoaHocNavigation.TenDanhMuc }, NgayTao = n.NgayTao != null ? n.NgayTao.Value.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy"), MoTa = n.MoTa, LuotXem = n.LuotXem, NguoiTao = new NguoiTaoVM { TaiKhoan = n.NguoiTao, HoTen = n.NguoiTaoNavigation.HoTen, MaLoaiNguoiDung = n.NguoiTaoNavigation.MaLoaiNguoiDung, TenLoaiNguoiDung = n.NguoiTaoNavigation.MaLoaiNguoiDungNavigation.TenLoaiNguoiDung }, HinhAnh = DomainImage + n.HinhAnh }).ToList());
@@ -52,7 +53,7 @@ namespace elearningAPI.Controllers
             var lstModel = db.DanhMucKhoaHoc.Where(n => n.BiDanh.Contains(tenDanhMuc));
             if (lstModel.Count() == 0)
             {
-                var response = await tbl.TBLoi(ThongBaoLoi.Loi500, "Không tìm thấy danh mục khóa học!");
+                var response = await tbl.TBLoi(ThongBaoLoi.Loi404, "Không tìm thấy danh mục khóa học!");
                 return response;
             }
             return Ok(lstModel.ToList().Select(n => new { MaDanhMuc = n.MaDanhMuc, tenDanhMuc = n.TenDanhMuc }));
@@ -65,7 +66,7 @@ namespace elearningAPI.Controllers
             var lstModel = db.KhoaHoc.Where(n => n.MaDanhMucKhoaHoc == maDanhMuc && n.MaNhom == MaNhom);
             if (lstModel.Count() == 0)
             {
-                var response = await tbl.TBLoi(ThongBaoLoi.Loi500, "Không tìm thấy danh mục khóa học!");
+                var response = await tbl.TBLoi(ThongBaoLoi.Loi404, "Không tìm thấy danh mục khóa học!");
                 return response;
             }
             return Ok(lstModel.Select(n => new KhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.TenKhoaHoc, BiDanh = n.BiDanh, MaNhom = n.MaNhom, DanhMucKhoaHoc = new DanhMucKHVM { MaDanhMucKhoahoc = n.MaDanhMucKhoaHoc, TenDanhMucKhoaHoc = n.MaDanhMucKhoaHocNavigation.TenDanhMuc }, NgayTao = n.NgayTao != null ? n.NgayTao.Value.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy"), MoTa = n.MoTa, LuotXem = n.LuotXem, NguoiTao = new NguoiTaoVM { TaiKhoan = n.NguoiTao, HoTen = n.NguoiTaoNavigation.HoTen, MaLoaiNguoiDung = n.NguoiTaoNavigation.MaLoaiNguoiDung, TenLoaiNguoiDung = n.NguoiTaoNavigation.MaLoaiNguoiDungNavigation.TenLoaiNguoiDung }, HinhAnh = DomainImage + n.HinhAnh }).ToList());
@@ -78,7 +79,7 @@ namespace elearningAPI.Controllers
             var lstModel = db.KhoaHoc.Where(n => n.BiDanh.Contains(tenKhoaHoc) && n.MaNhom == MaNhom);
             if (lstModel.Count() == 0)
             {
-                var response = await tbl.TBLoi(ThongBaoLoi.Loi500, "Không tìm thấy khóa học!");
+                var response = await tbl.TBLoi(ThongBaoLoi.Loi404, "Không tìm thấy khóa học!");
                 return response;
             }
             IEnumerable<KhoaHocVM> query = lstModel.Select(n => new KhoaHocVM { MaKhoaHoc = n.MaKhoaHoc, TenKhoaHoc = n.TenKhoaHoc, BiDanh = n.BiDanh, MaNhom = n.MaNhom, DanhMucKhoaHoc = new DanhMucKHVM { MaDanhMucKhoahoc = n.MaDanhMucKhoaHoc, TenDanhMucKhoaHoc = n.MaDanhMucKhoaHocNavigation.TenDanhMuc }, NgayTao = n.NgayTao != null ? n.NgayTao.Value.ToString("dd/MM/yyyy") : DateTime.Now.ToString("dd/MM/yyyy"), MoTa = n.MoTa, LuotXem = n.LuotXem, NguoiTao = new NguoiTaoVM { TaiKhoan = n.NguoiTao, HoTen = n.NguoiTaoNavigation.HoTen, MaLoaiNguoiDung = n.NguoiTaoNavigation.MaLoaiNguoiDung, TenLoaiNguoiDung = n.NguoiTaoNavigation.MaLoaiNguoiDungNavigation.TenLoaiNguoiDung }, HinhAnh = DomainImage + n.HinhAnh });
@@ -338,10 +339,41 @@ namespace elearningAPI.Controllers
                 var response = await tbl.TBLoi(ThongBaoLoi.Loi500, "Khóa học đã ghi danh học viên không thể xóa!");
                 return response;
             }
+            try
+            {
+
+
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/hinhanh", khoaHocDelete.HinhAnh);
+                IFileProvider physicalFileProvider = new PhysicalFileProvider(path);
+                DeleteFiles(physicalFileProvider);
+
+
+            }
+            catch (Exception ex)
+            {
+            }
             db.KhoaHoc.Remove(khoaHocDelete);
             db.SaveChanges();
-            //DeleteFileLocalServer(khoaHocDelete.HinhAnh);
+
+
             return Ok("Xóa thành công");
+        }
+
+        private void DeleteFiles(IFileProvider physicalFileProvider)
+        {
+            if (physicalFileProvider is PhysicalFileProvider)
+            {
+                var directory = physicalFileProvider.GetDirectoryContents(string.Empty);
+                foreach (var file in directory)
+                {
+                    if (!file.IsDirectory)
+                    {
+                        var fileInfo = new System.IO.FileInfo(file.PhysicalPath);
+                        fileInfo.Delete();
+
+                    }
+                }
+            }
         }
         [Authorize(Roles = "GV")]
         [HttpPost("GhiDanhKhoaHoc")]

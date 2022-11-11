@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0VGWoCgGNGxdAZZijZKliPOw11t1oca+zQByflvUZ7xghUc9wnwyCw+FJpa3ABwFTWluX/4rc6+r7lZJ2aYz4w==",
+  "dgSpecHash": "9CDjvf0J+cj7BblRXwH5XGQ5DWN+Hl31uYkM8tcSu48oiTyTXZg8h9pWcApkRdF/mRZEkyq5YPqbwKZbMDFrjQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khaitruong\\Desktop\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
+  "projectFilePath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khaitruong\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
     "C:\\Users\\khaitruong\\.nuget\\packages\\castle.core\\4.2.1\\castle.core.4.2.1.nupkg.sha512",

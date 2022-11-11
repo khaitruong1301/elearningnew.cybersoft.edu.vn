@@ -14343,11 +14343,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\khaitruong\\Desktop\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
+      "projectUniqueName": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
       "projectName": "elearningAPI",
-      "projectPath": "C:\\Users\\khaitruong\\Desktop\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
+      "projectPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\elearningnew.cybersoft.edu.vn\\elearningAPI.csproj",
       "packagesPath": "C:\\Users\\khaitruong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\khaitruong\\Desktop\\elearningnew.cybersoft.edu.vn\\obj\\",
+      "outputPath": "C:\\Users\\khaitruong\\Desktop\\cybersoft\\elearningnew.cybersoft.edu.vn\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khaitruong\\AppData\\Roaming\\NuGet\\NuGet.Config",
